@@ -15,6 +15,17 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
+app.get('/product', (req, res) => {
+	const queryString = "SELECT * FROM products";
+	
+	db.pool.query(queryString, (err, result) => {
+	    if (err) {
+	      console.error('List product Query error:', err.stack);
+	    }
+	    res.render('listProducts', {productList : result.rows});
+	});
+});
+
 app.get('/products/new', (req, res) => {
     res.render('addProduct');
 })
