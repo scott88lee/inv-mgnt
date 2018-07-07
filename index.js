@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
-app.get('/product', (req, res) => {
-	const queryString = "SELECT * FROM products";
+app.get('/products', (req, res) => {
+	const queryString = "SELECT * FROM products INNER JOIN suppliers ON products.supplier = suppliers.supplier_id";
 	
 	db.pool.query(queryString, (err, result) => {
 	    if (err) {
@@ -27,7 +27,26 @@ app.get('/product', (req, res) => {
 });
 
 app.get('/products/new', (req, res) => {
-    res.render('addProduct');
+	const queryString = "SELECT * FROM suppliers";
+	
+	db.pool.query(queryString, (err, result) => {
+	    if (err) {
+	      console.error('Query suppliers error:', err.stack);
+	    }
+	    res.render('addProduct', {supplierList : result.rows});
+	});
+})
+
+app.get('/products/:sku', (req, res) => {
+	const queryString = "SELECT * FROM products WHERE SKU = '" + req.params.sku + "'";
+	
+	db.pool.query(queryString, (err, result) => {
+	    if (err) {
+	      console.error('Query product error:', err.stack);
+	    }
+	    console.log(result.rows);
+	    res.render('listProducts', {productList : result.rows});
+	});
 })
 
 app.post('/products', (req, res) => {
@@ -38,7 +57,7 @@ app.post('/products', (req, res) => {
 	    if (err) {
 	      console.error('Post product Query error:', err.stack);
 	    }
-	    res.send('Added :' + result.rows[0].model);
+	    res.send('Added : ' + result.rows[0].model);
 	});
 });
 
