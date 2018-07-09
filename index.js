@@ -1,4 +1,5 @@
 const express = require('express');
+const controller = require('./controller');
 const db = require('./db');
 
 const app = express();
@@ -15,19 +16,11 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
-app.get('/products', (req, res) => {
-	const queryString = "SELECT * FROM products INNER JOIN suppliers ON products.supplier = suppliers.supplier_id";
-	
-	db.pool.query(queryString, (err, result) => {
-	    if (err) {
-	      console.error('List product Query error:', err.stack);
-	    }
-	    res.render('listProducts', {productList : result.rows});
-	});
-});
+app.get('/products', controller.listProducts);
 
 app.get('/products/new', (req, res) => {
 	const queryString = "SELECT * FROM suppliers";
+	//To retrieve supplier l
 	
 	db.pool.query(queryString, (err, result) => {
 	    if (err) {
@@ -35,19 +28,19 @@ app.get('/products/new', (req, res) => {
 	    }
 	    res.render('addProduct', {supplierList : result.rows});
 	});
-})
+});
 
 app.get('/products/:sku', (req, res) => {
-	const queryString = "SELECT * FROM products WHERE SKU = '" + req.params.sku + "'";
-	
+	const queryString = "SELECT * FROM products INNER JOIN suppliers ON products.supplier = suppliers.supplier_id WHERE SKU = '" + req.params.sku + "'";
+		
 	db.pool.query(queryString, (err, result) => {
 	    if (err) {
-	      console.error('Query product error:', err.stack);
+	      console.error('Query showProduct error:', err.stack);
 	    }
 	    console.log(result.rows);
-	    res.render('listProducts', {productList : result.rows});
+	    res.render('showProduct', {product : result.rows[0]});
 	});
-})
+});
 
 app.post('/products', (req, res) => {
 	const queryString = "INSERT INTO products (SKU, brand, model, supplier, description, color, variation) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
