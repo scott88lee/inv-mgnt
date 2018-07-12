@@ -5,7 +5,7 @@ class listSuppliers extends React.Component {
 	render() {
 		const supplierListElements = this.props.suppliers.map( function (supplier) {
 			
-			let link = "/" + {supplier.supplier_name} + "/edit"
+			let link = supplier.supplier_name.toLowerCase() + "/edit";
 
 			return (
 				<div>
@@ -13,7 +13,7 @@ class listSuppliers extends React.Component {
 					<ul>
 						<li>{supplier.business_name}</li>
 						<li>{supplier.supplier_address}</li>
-						<a href = "{link}" > Edit details </a>
+						<a href={link}>Edit details</a>
 					</ul>
 				</div>
 			)

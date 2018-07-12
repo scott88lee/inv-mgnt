@@ -5,9 +5,14 @@ class home extends React.Component {
     return(
       	<div>
 		    <h1>SAM - Inv Mgmt Acc</h1>
-		    <a href = "/products">Products </a>
-		    <a href = "/products/new">Add products </a>
-		    <a href = "/suppliers">Suppliers </a>
+		    <a href = "/products">List Products </a><br />
+		    <a href = "/products/CR20">Show one product</a><br />
+		    <a href = "/products/CR20/edit">Edit product</a><br />
+		    <a href = "/products/new">Add products </a><br />
+
+		    <br />
+		    <a href = "/suppliers">Suppliers </a><br />
+		    <a href = "/suppliers/">Show one product</a><br />
 		    <a href = "/suppliers/new">Add Suppliers </a>
 		</div>
     )

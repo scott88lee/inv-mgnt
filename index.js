@@ -18,12 +18,14 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/products', controller.getListProducts);
 app.get('/products/new', controller.getAddProduct);
 app.get('/products/:sku', controller.getBySKU);
+app.get('/products/:sku/edit', controller.getEditProduct);
 app.post('/products', controller.postAddProduct);
 
 app.get('/suppliers', controller.getListSuppliers);
 app.get('/suppliers/new', controller.getAddSupplier); //
-//app.get('/supplier/:alias', controller.getSupplierByAlias);
-app.post('/suppliers', controller.postAddSupplier);
+app.get('/supplier/:alias', controller.getSupplierByAlias);
+// app.get('/supplier/:alias/edit', controller.getEditSupplier);
+// app.post('/suppliers', controller.postAddSupplier);
 
 
 app.get('/', (req, res) => { res.render('home') });

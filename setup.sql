@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS products (
     description TEXT,
     color TEXT,
     variation TEXT
-);
+); 
 
 INSERT INTO products (SKU, brand, model, supplier, description, color, variation)
 VALUES ('YMAF310', 'Yamaha', 'F310 Acoustic Guitar', 2, 'Flag ship beginner Acoustic model', 'Natural', 'Normal');
