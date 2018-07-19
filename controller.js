@@ -9,7 +9,8 @@ module.exports = {
 	    	if (err) {
 	    	console.error('List product Query error:', err.stack);
 	   		}
-	    	res.render('products/listAll', {productList : result.rows});
+	   		console.log(result.rows);
+	    	res.render('products/listAll', {product : result.rows});
 		});
 	},
 

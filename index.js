@@ -1,34 +1,37 @@
 // IMPORTS
 const express = require('express');
+const handlebars = require('express-handlebars');
 const controller = require('./controller');
 const db = require('./db');
 const app = express();
-// IMPORTS
 
+// Set Handlebars to be the default view engine
+const handlebarsConfig = {
+   extname: '.handlebars',
+   layoutsDir: 'views',
+   defaultLayout: 'layout'
+};
 
-// Set React jsx to be the default view engine
-const reactEngine = require('express-react-views').createEngine();
-app.engine('jsx', reactEngine);
+app.engine('handlebars', handlebars.create(handlebarsConfig).engine);
+app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jsx');
+
+// Public Folder and Middleware
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-// Set React jsx to be the default view engine
 
 // ROUTES
 app.get('/products', controller.getListProducts);
-app.get('/products/new', controller.getAddProduct);
 app.get('/products/:sku', controller.getBySKU);
-app.get('/products/:sku/edit', controller.getEditProduct);
-app.post('/products', controller.postAddProduct);
+// app.get('/products/:sku/edit', controller.getEditProduct);
+// app.get('/products/new', controller.getAddProduct);//
+// app.post('/products', controller.postAddProduct);
 
-app.get('/suppliers', controller.getListSuppliers);
-app.get('/suppliers/new', controller.getAddSupplier); //
-app.get('/supplier/:alias', controller.getSupplierByAlias);
-// app.get('/supplier/:alias/edit', controller.getEditSupplier);
-// app.post('/suppliers', controller.postAddSupplier);
+// app.get('/suppliers', controller.getListSuppliers);
+// app.get('/suppliers/new', controller.getAddSupplier); //
+// app.get('/supplier/:alias', controller.getSupplierByAlias);
 
-
-app.get('/', (req, res) => { res.render('home') });
+app.get('/', (req, res) => { res.render('dashboard') });
 app.get('*', (req, res) => { res.sendStatus(404) });
 
 // LISTEN

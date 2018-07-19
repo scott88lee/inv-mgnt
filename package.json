@@ -1,7 +1,7 @@
 {
   "name": "samima",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sound Alchemy Music Inventory Management Accounting",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/scott88lee/SAMIMA.git"
   },
-  "author": "",
+  "author": "Scott Lee",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/scott88lee/SAMIMA/issues"
@@ -18,9 +18,7 @@
   "homepage": "https://github.com/scott88lee/SAMIMA#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "express-react-views": "^0.10.5",
-    "pg": "^7.4.3",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "express-handlebars": "^3.0.0",
+    "pg": "^7.4.3"
   }
 }
