@@ -7,6 +7,14 @@ const config = {
   port: 5432
 };
 
+const linode = {
+  user: 'samima',
+  password: 'weaser',
+  host: '127.0.0.1',
+  database: 'samima', //Linode config
+  port: 5432
+};
+
 const pool = new pg.Pool(config);
 
 pool.on('error', function (err) {
