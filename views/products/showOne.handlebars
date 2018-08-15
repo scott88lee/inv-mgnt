@@ -1,17 +1,17 @@
 <div>
-	<h1>Product List</h1>
+	<h2>{{product.brand}}</h2>
+	{{product.model}}
 	<div class="ui cards">
 		<div class="card">
 			<div class="content">
-				<div class="header">{{model}}</div>
-				<div class="meta">{{sku}}</div>
+				<div class="header">SKU : {{product.sku}}</div>
+				<div class="meta">Suppier : {{product.supplier_name}}</div>
+				Color : {{product.color}}<br>
+				Variation  : {{product.variation}}<br>
 				<div class="description">
-					{{description}}
+					<h5>Description :</h5>
+					{{product.description}}
 				</div>
-				{{product.model}}<br>
-				{{product.supplier}}<br>
-				{{product.color}}<br>
-				{{product.variation}}<br>
 			</div>
 		</div>
 	</div>

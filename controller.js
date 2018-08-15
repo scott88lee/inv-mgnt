@@ -33,6 +33,7 @@ module.exports = {
 		    if (err) {
 		      console.error('Query showProduct error:', err.stack);
 		    }
+		    console.log(result.rows[0]);
 		    res.render('products/showOne', {product : result.rows[0]});
 		});
 	},
