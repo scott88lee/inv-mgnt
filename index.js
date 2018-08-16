@@ -34,6 +34,9 @@ app.get('/products/:sku', controller.getBySKU);
 
 app.get('/purchases/add', controller.getAddPurchase);
 
+// APIs
+app.get('/api/products/search/:value', controller.apiProductSearch);
+
 app.get('/', (req, res) => { res.render('dashboard') });
 app.get('*', (req, res) => { res.sendStatus(404) });
 

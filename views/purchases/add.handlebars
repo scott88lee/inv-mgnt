@@ -1,21 +1,75 @@
+<style>
+  #results-container {
+    margin: 3px;
+    height: 138px;
+    width: 100%;
+    overflow: auto;
+    border: 1px solid grey;
+  }
+  .search-results {
+
+  }
+</style>
 <div>
     <h1>Inventory Purchases</h1>
+    Search product: <input id="live-search" onkeyup="search()"></input>
+    <button onclick="search()">Add product</button>
+  
+      <table class="ui unstackable table" id="results-container">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th class="right aligned">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Approved</td>
+            <td class="right aligned">None</td>
+          </tr>
+          <tr>
+            <td>Jamie</td>
+            <td>Approved</td>
+            <td class="right aligned">Requires call</td>
+          </tr>
+          <tr>
+            <td>Jill</td>
+            <td>Denied</td>
+            <td class="right aligned">None</td>
+          </tr>
+        </tbody>
+      </table>
+    
     <form action="/purchases" method="POST">
-  		SKU: <br>
-  		<input type="text" name="SKU" /> <br>
-  		Brand: <br>
-  		<input type="text" name="brand" /> <br>
-  		Model: <br>
-  		<input type="text" name="model" /> <br>
-  		Supplier: <select name="supplier">
-  					{ supplierListElements }
-  				  </select> <br>
-  		Description: <br>
-  		<input type="text" name="description"> <br>
-  		Color: <br>
-  		<input type="text" name="color"> <br>
-  		Variation: <br>
-  		<input type="text" name="variation"> <br>
-  		<input type="submit" value="Submit">
+  		
+      <input type="submit" value="Submit">
   	</form>
 </div>
+<script type="text/javascript">
+  var resultsContainer = document.getElementById('results-container');
+
+  function search(){
+    searchValue = document.getElementById('live-search').value;
+
+    var request = new XMLHttpRequest();
+    request.addEventListener("error", ()=> console.log('Req failed.'));
+    request.addEventListener("load", responseHandler);
+    request.open("GET", "/api/products/search/" + searchValue);
+    request.send();
+  }
+
+  function responseHandler() {
+    var res = JSON.parse(this.responseText);
+    console.log(res.products);
+    
+    for (var i=0; i<res.products.length; i++) {
+      let x = document.createElement('div');
+      x.innerHTML = "" + res.products[i].sku + " - " + res.products[i].brand + " - " + res.products[i].model + " - " + res.products[i].description;
+      resultsContainer.appendChild(x);
+    }
+  }
+</script>
+
+

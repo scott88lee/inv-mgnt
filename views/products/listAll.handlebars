@@ -2,20 +2,26 @@
 	<h1>Product List</h1>
 	<div class="ui cards">
 		{{#each product}}
-			<div class="card">
+			<div class="ui card">
 				<div class="content">
 					<div class="header">{{model}}</div>
 					<div class="meta">
+						{{brand_name}}
 						<a href='/products/{{sku}}'>
 						{{sku}}</a>
 					</div>
 					<div class="description">
 						{{description}}
 					</div>
-					{{this.model}}<br>
-					{{this.supplier}}<br>
-					{{this.color}}<br>
-					{{this.variation}}<br>
+					Model: {{this.model}}<br>
+					Supplier: {{this.supplier_name}}<br>
+					Color: {{this.color}}<br>
+					Variation: {{this.variation}}<br>
+				</div>
+			
+				<div class="two ui buttons">
+	    		<a class="ui button" href="/products/{{sku}}">Details</a>
+	    		<a class="ui button" href="/products/{{sku}}/edit">Edit</a>
 				</div>
 			</div>
 		{{/each}}

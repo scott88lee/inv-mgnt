@@ -3,7 +3,7 @@ const db = require('./db');
 module.exports = {
 
 	getListProducts : (req, res) => {
-		const queryString = "SELECT * FROM products INNER JOIN suppliers ON products.supplier = suppliers.supplier_id";
+		const queryString = "SELECT * FROM products INNER JOIN suppliers ON products.supplier = suppliers.supplier_id INNER JOIN brands ON products.brand = brands.brand_id";
 
 		db.pool.query(queryString, (err, result) => {
 	    	if (err) {
@@ -124,5 +124,17 @@ module.exports = {
 		
 	getAddPurchase : (req, res) => {
 		res.render('purchases/add');
+	},
+
+	apiProductSearch : (req, res) => {
+		const queryString = "SELECT * FROM products WHERE sku = '" + req.params.value + "' or model LIKE '%" + req.params.value + "%'";
+		db.pool.query(queryString, (err, result) => {
+			if (err) console.log(err);
+			
+			let context = {
+				products : result.rows
+			}
+		res.send(context);
+		});
 	}
 }

@@ -22,6 +22,17 @@ CREATE TABLE IF NOT EXISTS brands (
     brand_name TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS inventory (
+    product_id INT NOT NULL,
+    product_quantity INT NOT NULL
+);
+
+-- CREATE TABLE IF NOT EXISTS categories (
+--     category_id SERIAL PRIMARY KEY,
+--     category_name TEXT NOT NULL,
+-- );
+
+
 INSERT INTO products (SKU, brand, model, supplier, description, color, variation)
 VALUES ('YMAF310', 1, 'F310 Acoustic Guitar', 2, 'Flag ship beginner Acoustic model', 'Natural', 'Normal');
 
