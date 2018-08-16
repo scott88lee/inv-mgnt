@@ -9,22 +9,36 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS products (
     product_id SERIAL PRIMARY KEY,
     SKU VARCHAR(30) NOT NULL,
-    brand TEXT NOT NULL,
+    brand INT NOT NULL,
     model TEXT NOT NULL,
     supplier INT NOT NULL,
     description TEXT,
     color TEXT,
     variation TEXT
-); 
+);
+
+CREATE TABLE IF NOT EXISTS brands (
+    brand_id SERIAL PRIMARY KEY,
+    brand_name TEXT NOT NULL
+);
 
 INSERT INTO products (SKU, brand, model, supplier, description, color, variation)
-VALUES ('YMAF310', 'Yamaha', 'F310 Acoustic Guitar', 2, 'Flag ship beginner Acoustic model', 'Natural', 'Normal');
+VALUES ('YMAF310', 1, 'F310 Acoustic Guitar', 2, 'Flag ship beginner Acoustic model', 'Natural', 'Normal');
 
 INSERT INTO products (SKU, brand, model, supplier, description, color)
-VALUES ('CR20', 'Orange Amps', 'Crush 20 Guitar amp', 2, 'Beginner electric guitar amp', 'Orange');
+VALUES ('CR20', 2, 'Crush 20 Guitar amp', 2, 'Beginner electric guitar amp', 'Orange');
 
 INSERT INTO products (SKU, brand, model, supplier, description)
-VALUES ('ZMG3XN', 'Zoom', 'G3Xn Effects Processor', 1, 'Guitar multi-fx');
+VALUES ('ZMG3XN', 3, 'G3Xn Effects Processor', 1, 'Guitar multi-fx');
+
+INSERT INTO brands (brand_name)
+VALUES ('Yamaha');
+
+INSERT INTO brands (brand_name)
+VALUES ('Orange Amps');
+
+INSERT INTO brands (brand_name)
+VALUES ('Zoom');
 
 CREATE TABLE IF NOT EXISTS suppliers (
     supplier_id SERIAL PRIMARY KEY,

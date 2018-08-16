@@ -15,7 +15,15 @@ const linode = {
   port: 5432
 };
 
-const pool = new pg.Pool(config);
+const awsRDS = {
+  user: 'master',
+  password: 'testing123',
+  host: 'samima.cqwedve0zmoz.ap-southeast-1.rds.amazonaws.com',
+  database: 'samima', //Linode config
+  port: 5432
+};
+
+const pool = new pg.Pool(awsRDS);
 
 pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);

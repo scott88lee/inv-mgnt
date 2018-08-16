@@ -1,0 +1,21 @@
+<div>
+    <h1>Inventory Purchases</h1>
+    <form action="/purchases" method="POST">
+  		SKU: <br>
+  		<input type="text" name="SKU" /> <br>
+  		Brand: <br>
+  		<input type="text" name="brand" /> <br>
+  		Model: <br>
+  		<input type="text" name="model" /> <br>
+  		Supplier: <select name="supplier">
+  					{ supplierListElements }
+  				  </select> <br>
+  		Description: <br>
+  		<input type="text" name="description"> <br>
+  		Color: <br>
+  		<input type="text" name="color"> <br>
+  		Variation: <br>
+  		<input type="text" name="variation"> <br>
+  		<input type="submit" value="Submit">
+  	</form>
+</div>

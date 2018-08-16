@@ -120,5 +120,9 @@ module.exports = {
 		    }
 		    res.send('Added : ' + result.rows[0].supplier_name);
 		});
+	},
+		
+	getAddPurchase : (req, res) => {
+		res.render('purchases/add');
 	}
 }
