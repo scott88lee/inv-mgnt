@@ -1,3 +1,4 @@
-To be added in.
+To implement TDD development.
 
-Product categories.
+Starting with basic test for ROOT and 404
+Root -
