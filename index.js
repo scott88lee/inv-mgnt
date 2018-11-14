@@ -38,6 +38,7 @@ app.get('/purchases/add', controller.getAddPurchase);
 app.get('/api/products/search/:value', controller.apiProductSearch);
 
 app.get('/', (req, res) => { res.render('dashboard') });
+//app.get('/mock', (req, res) => { res.render('mock') });
 app.get('*', (req, res) => { res.sendStatus(404) });
 
 // LISTEN
