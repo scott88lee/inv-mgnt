@@ -127,7 +127,7 @@ module.exports = {
 	},
 
 	apiProductSearch : (req, res) => {
-		const queryString = "SELECT * FROM products WHERE sku = '" + req.params.value + "' or model LIKE '%" + req.params.value + "%'";
+		const queryString = "SELECT * FROM products INNER JOIN brands ON products.brand = brands.brand_id WHERE sku = '" + req.params.value + "' or model LIKE '%" + req.params.value + "%'";
 		db.pool.query(queryString, (err, result) => {
 			if (err) console.log(err);
 			

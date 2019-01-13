@@ -12,16 +12,30 @@ describe('Test the root path', () => {
         });
     });
 
-    request(app)
-    .get('/')
-    .expect(200)
-    .end(function(err, res) {
-    
-      var $ = cheerio.load(res.text);
-      var header = $('h1');
-      expect(header.text()).toBe('SAM - Inv Mgmt Acc');
+    test('Should be right title', (done) => {
+        request(app)
+        .get('/')
+        .expect(200)
+        .end(function(err, res) {
+        
+        var $ = cheerio.load(res.text);
+        var header = $('h1');
+        expect(header.text()).toBe('SAM - Inv Mgmt Acc');
+        });
+        done();
     });
 
+    test('Should Product list render', (done) => {
+        request(app)
+        .get('/products')
+        .expect(200)
+        .end(function(err, res) {
+            let $ = cheerio.load(res.text);
+            let header = $('h1');
+            expect(header.text()).toBe('Product List');
+            done();    
+        });    
+    });
 });
 
 describe('Test the 404 path', () => {   

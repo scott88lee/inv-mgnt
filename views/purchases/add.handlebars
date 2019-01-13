@@ -1,52 +1,36 @@
 <style>
   #results-container {
-    margin: 3px;
-    height: 138px;
+    margin-top: 8px;
     width: 100%;
-    overflow: auto;
-    border: 1px solid grey;
   }
+
   .search-results {
 
   }
 </style>
+
 <div>
-    <h1>Inventory Purchases</h1>
-    Search product: <input id="live-search" onkeyup="search()"></input>
-    <button onclick="search()">Add product</button>
+  <h2>Inventory Purchases</h2>
+  Search product: <input id="live-search" onkeyup="search()"></input>
+  <button onclick="search()">Add product</button>
+
+    <table class="ui unstackable table" id="results-container">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Description</th>
+          <th class="right aligned">Add</th>
+        </tr>
+      </thead>
+    </table>
   
-      <table class="ui unstackable table" id="results-container">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th class="right aligned">Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John</td>
-            <td>Approved</td>
-            <td class="right aligned">None</td>
-          </tr>
-          <tr>
-            <td>Jamie</td>
-            <td>Approved</td>
-            <td class="right aligned">Requires call</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Denied</td>
-            <td class="right aligned">None</td>
-          </tr>
-        </tbody>
-      </table>
-    
-    <form action="/purchases" method="POST">
-  		
-      <input type="submit" value="Submit">
-  	</form>
+  <form action="/purchases" method="POST">
+    <input type="submit" value="Submit">
+	</form>
 </div>
+
 <script type="text/javascript">
   var resultsContainer = document.getElementById('results-container');
 
@@ -62,14 +46,17 @@
 
   function responseHandler() {
     var res = JSON.parse(this.responseText);
-    console.log(res.products);
+    var products = res.products;
     
-    for (var i=0; i<res.products.length; i++) {
-      let x = document.createElement('div');
-      x.innerHTML = "" + res.products[i].sku + " - " + res.products[i].brand + " - " + res.products[i].model + " - " + res.products[i].description;
-      resultsContainer.appendChild(x);
+    for (var i=0; i<products.length; i++) {
+      let tableRow = document.createElement('tr');
+        tableRow.innerHTML = "<td>" + products[i].sku + "</td>" + "<td>" + products[i].brand_name + "</td>" + "<td>" + products[i].model + "</td>" + "<td>" + products[i].description + "</td>" + "<td><a href='#'>Add</a></td>"; 
+      resultsContainer.appendChild(tableRow);
     }
   }
+
+  function clearResults() {
+    resultsContainer.childNodes[6]
+  }
+
 </script>
-
-
