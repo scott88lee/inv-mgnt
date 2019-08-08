@@ -51,4 +51,3 @@ app.get('*', (req, res) => { res.sendStatus(404) });
 
 // LISTEN
 app.listen(3000, () => {console.log('Listen port: 3000')} );
-module.exports = app;

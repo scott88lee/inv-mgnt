@@ -17,20 +17,10 @@ CREATE TABLE IF NOT EXISTS products (
     variation TEXT
 );
 
-CREATE TABLE IF NOT EXISTS brands (
-    brand_id SERIAL PRIMARY KEY,
-    brand_name TEXT NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS inventory (
     product_id INT NOT NULL,
     product_quantity INT NOT NULL
 );
-
--- CREATE TABLE IF NOT EXISTS categories (
---     category_id SERIAL PRIMARY KEY,
---     category_name TEXT NOT NULL,
--- );
 
 
 INSERT INTO products (SKU, brand, model, supplier, description, color, variation)
